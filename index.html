@@ -1,0 +1,3219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrera Por La Salud y La Paz</title>
+
+<style>
+
+html{
+    scroll-behavior:smooth;
+}
+
+*{
+    box-sizing:border-box;
+}
+    /* ===== PANTALLA DE CARGA ===== */
+
+#pantallaCarga{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:#ffffff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 0.4s ease;
+}
+
+.cargando-contenido{
+    text-align:center;
+}
+
+.cargando-contenido img{
+    width:180px;
+    max-width:60vw;
+    height:auto;
+}
+
+.cargando-contenido p{
+    margin-top:10px;
+    font-size:18px;
+    font-weight:bold;
+    color:#333;
+}
+}
+
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#fff;
+    color:#333;
+    text-align:center;
+}
+
+nav{
+    background:rgba(18,59,140,.97);
+    padding:17px 20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 7px;
+    font-weight:bold;
+    font-size:15px;
+    padding:9px 13px;
+    border-radius:20px;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.15);
+    transform:translateY(-2px);
+}
+
+header{
+    min-height:650px;
+    background-image:
+        linear-gradient(
+            rgba(0,28,75,.6),
+            rgba(18,59,140,.52)
+        ),
+        url("Catedral.jpg");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+}
+
+header:before,
+header:after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+}
+
+header:before{
+    width:350px;
+    height:350px;
+    background:rgba(255,255,255,.08);
+    top:-130px;
+    left:-120px;
+}
+
+header:after{
+    width:450px;
+    height:450px;
+    background:rgba(65,105,225,.2);
+    bottom:-260px;
+    right:-120px;
+}
+
+.texto-portada{
+    max-width:900px;
+    padding:40px;
+    position:relative;
+    z-index:2;
+}
+
+.texto-portada h1{
+    color:#fff;
+    font-size:clamp(40px,6vw,70px);
+    margin:0 0 18px;
+    line-height:1.05;
+    text-shadow:0 4px 18px rgba(0,0,0,.35);
+}
+
+.texto-portada p{
+    color:#fff;
+    font-size:22px;
+    margin:10px;
+    text-shadow:0 2px 8px rgba(0,0,0,.4);
+}
+
+.boton{
+    background:#4169E1;
+    color:#fff;
+    padding:16px 36px;
+    border-radius:50px;
+    text-decoration:none;
+    display:inline-block;
+    font-weight:bold;
+    font-size:18px;
+    margin-top:25px;
+    border:2px solid rgba(255,255,255,.4);
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+    transition:.3s;
+}
+
+.boton:hover{
+    background:#1D4ED8;
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+
+.onda{
+    position:absolute;
+    bottom:-1px;
+    left:0;
+    width:100%;
+    height:90px;
+    background:#fff;
+    clip-path:ellipse(75% 60% at 50% 100%);
+}
+
+section{
+    padding:90px 25px;
+    position:relative;
+}
+
+section h2{
+    color:#123B8C;
+    font-size:clamp(32px,5vw,42px);
+    margin-top:0;
+    margin-bottom:18px;
+}
+
+section h2:after{
+    content:"";
+    display:block;
+    width:65px;
+    height:4px;
+    background:#4169E1;
+    border-radius:10px;
+    margin:15px auto 0;
+}
+
+section p{
+    color:#333;
+    font-size:18px;
+    max-width:800px;
+    margin:15px auto;
+    line-height:1.7;
+}
+
+/* INFORMACIÓN */
+
+#informacion{
+    background:
+        linear-gradient(
+            180deg,
+            #F4F7FC 0%,
+            #fff 100%
+        );
+    overflow:hidden;
+}
+
+.informacion-intro{
+    max-width:850px;
+    margin:0 auto 45px;
+}
+
+.info-tarjetas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:45px auto;
+}
+
+.info-tarjeta{
+    background:#123B8C;
+    color:#fff;
+    padding:32px 25px;
+    border-radius:30px 12px;
+    min-height:210px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(18,59,140,.18);
+    transition:.35s;
+}
+
+.info-tarjeta:after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-35px;
+    bottom:-40px;
+}
+
+.info-tarjeta:hover{
+    transform:translateY(-8px) rotate(-1deg);
+    box-shadow:0 18px 35px rgba(18,59,140,.28);
+}
+
+.info-tarjeta h3{
+    color:#fff;
+    font-size:25px;
+    margin:0 0 15px;
+    position:relative;
+    z-index:2;
+}
+
+.info-tarjeta p{
+    color:#fff;
+    font-size:17px;
+    line-height:1.6;
+    margin:8px auto;
+    position:relative;
+    z-index:2;
+}
+
+/* HORARIOS */
+
+.horarios{
+    max-width:950px;
+    margin:55px auto;
+    background:#fff;
+    padding:38px 30px;
+    border-radius:30px;
+    box-shadow:0 12px 35px rgba(18,59,140,.1);
+    border-top:5px solid #4169E1;
+}
+
+.horarios h3{
+    color:#123B8C;
+    font-size:30px;
+    margin-top:0;
+}
+
+.horario{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin:22px auto;
+    max-width:750px;
+}
+
+.hora{
+    background:#123B8C;
+    color:#fff;
+    padding:13px 24px;
+    border-radius:50px;
+    font-weight:bold;
+    font-size:19px;
+    box-shadow:0 5px 15px rgba(18,59,140,.18);
+}
+
+.actividad{
+    color:#333;
+    font-size:19px;
+    font-weight:bold;
+}
+
+/* KIT */
+
+.kit{
+    max-width:950px;
+    margin:55px auto;
+    background:#F4F7FC;
+    padding:40px 30px;
+    border-radius:30px 12px;
+    border:1px solid #DDE7FF;
+}
+
+.kit h3{
+    color:#123B8C;
+    font-size:30px;
+    margin-top:0;
+}
+
+.kit-elementos{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:28px;
+}
+
+.kit-item{
+    background:#fff;
+    color:#123B8C;
+    padding:16px 22px;
+    border-radius:50px;
+    font-weight:bold;
+    font-size:17px;
+    border:2px solid #DDE7FF;
+    box-shadow:0 5px 15px rgba(18,59,140,.08);
+    transition:.3s;
+}
+
+.kit-item:hover{
+    background:#123B8C;
+    color:#fff;
+    transform:translateY(-4px);
+}
+
+/* PREMIACIÓN */
+
+.premiacion{
+    max-width:1000px;
+    margin:55px auto;
+    background:linear-gradient(135deg,#123B8C,#4169E1);
+    color:#fff;
+    padding:45px 30px;
+    border-radius:35px 12px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(18,59,140,.25);
+}
+
+.premiacion:before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    top:-120px;
+    right:-60px;
+}
+
+.premiacion h3{
+    color:#fff;
+    font-size:32px;
+    margin-top:0;
+    position:relative;
+}
+
+.premiacion p{
+    color:#fff;
+    position:relative;
+}
+
+.premios{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
+    position:relative;
+}
+
+.premio{
+    background:#fff;
+    color:#123B8C;
+    width:210px;
+    padding:28px 15px;
+    border-radius:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+    transition:.3s;
+}
+
+.premio:hover{
+    transform:translateY(-8px);
+    box-shadow:0 14px 25px rgba(0,0,0,.18);
+}
+
+.premio h4{
+    font-size:24px;
+    margin:0 0 12px;
+}
+
+.premio p{
+    color:#123B8C;
+    font-size:26px;
+    font-weight:bold;
+    margin:0;
+}
+
+/* RIFAS */
+
+.rifas{
+    max-width:950px;
+    margin:55px auto 0;
+    background:#fff;
+    padding:35px 30px;
+    border-radius:30px;
+    border:2px dashed #4169E1;
+    box-shadow:0 8px 25px rgba(18,59,140,.08);
+}
+
+.rifas h3{
+    color:#123B8C;
+    font-size:29px;
+    margin-top:0;
+}
+
+/* SEGURIDAD */
+
+.seguridad{
+    max-width:1100px;
+    margin:65px auto 10px;
+}
+
+.seguridad-intro{
+    max-width:820px;
+    margin:0 auto 35px;
+}
+
+.seguridad-tarjetas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+    max-width:1050px;
+    margin:0 auto;
+}
+
+.seguridad-tarjeta{
+    background:#fff;
+    padding:30px 22px;
+    border-radius:20px;
+    box-shadow:0 8px 22px rgba(18,59,140,.12);
+    border-top:5px solid #123B8C;
+    transition:.3s;
+}
+
+.seguridad-tarjeta:hover{
+    transform:translateY(-6px);
+    box-shadow:0 14px 28px rgba(18,59,140,.18);
+}
+
+.seguridad-icono{
+    width:65px;
+    height:65px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:#123B8C;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+}
+
+.seguridad-tarjeta h4{
+    color:#123B8C;
+    font-size:21px;
+    margin:10px 0 12px;
+}
+
+.seguridad-tarjeta p{
+    color:#444;
+    font-size:16px;
+    line-height:1.5;
+    margin:0 auto;
+}
+
+/* INSCRIPCIÓN */
+
+#inscripcion{
+    background:#fff;
+}
+
+form{
+    max-width:650px;
+    margin:40px auto;
+    text-align:left;
+    background:#F4F7FC;
+    padding:40px;
+    border-radius:35px 12px;
+    box-shadow:0 12px 35px rgba(18,59,140,.12);
+    border-top:5px solid #123B8C;
+}
+
+form label{
+    display:block;
+    color:#123B8C;
+    font-weight:bold;
+    margin-top:22px;
+    margin-bottom:8px;
+}
+
+form input[type=text],
+form input[type=number],
+form input[type=tel],
+form input[type=email],
+form select,
+form textarea{
+    width:100%;
+    padding:14px 15px;
+    border:2px solid #DDE7FF;
+    border-radius:14px;
+    font-size:16px;
+    font-family:Arial,sans-serif;
+    background:#fff;
+    transition:.3s;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus{
+    outline:none;
+    border-color:#4169E1;
+    box-shadow:0 0 0 4px rgba(65,105,225,.1);
+}
+
+form textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.distancias{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
+    flex-wrap:wrap;
+}
+
+.distancias label{
+    margin:0;
+    font-weight:normal;
+    color:#333;
+    background:#fff;
+    border:2px solid #DDE7FF;
+    padding:12px 18px;
+    border-radius:50px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.distancias label:hover{
+    border-color:#4169E1;
+}
+
+.distancias input{
+    margin-right:7px;
+}
+
+.checkbox{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:25px;
+    background:#fff;
+    padding:18px;
+    border-radius:15px;
+    border-left:4px solid #4169E1;
+}
+
+.checkbox input{
+    margin-top:5px;
+    accent-color:#123B8C;
+}
+
+.checkbox label{
+    margin:0;
+    font-weight:normal;
+    color:#333;
+    line-height:1.5;
+}
+
+form .boton{
+    border:none;
+    cursor:pointer;
+    margin-top:30px;
+    width:100%;
+}
+
+/* MENSAJE DEL REGISTRO */
+
+#mensajeRegistro{
+    display:none;
+    max-width:650px;
+    margin:25px auto 0;
+    padding:18px 20px;
+    border-radius:16px;
+    font-size:17px;
+    font-weight:bold;
+    text-align:center;
+    line-height:1.5;
+}
+
+.exito{
+    display:block!important;
+    background:#EAF7EE;
+    color:#176B36;
+    border:2px solid #9BD0AA;
+}
+
+.error{
+    display:block!important;
+    background:#FDEDED;
+    color:#A31F1F;
+    border:2px solid #E7A0A0;
+}
+
+form .boton:disabled{
+    opacity:.7;
+    cursor:wait;
+    transform:none;
+}
+
+/* COMPROBANTE */
+
+#comprobante{
+    background:#F4F7FC;
+}
+
+.comprobante-intro{
+    max-width:800px;
+    margin:0 auto 35px;
+}
+
+#formularioComprobante{
+    background:#fff;
+    border-top:5px solid #4169E1;
+}
+
+#archivoComprobante{
+    width:100%;
+    padding:14px;
+    border:2px solid #DDE7FF;
+    border-radius:14px;
+    background:#fff;
+    font-size:16px;
+}
+
+#mensajeComprobante{
+    max-width:650px;
+    margin:25px auto 0;
+    padding:18px 20px;
+    border-radius:16px;
+    font-size:17px;
+    font-weight:bold;
+    text-align:center;
+    line-height:1.5;
+    display:none;
+}
+
+/* RUTA */
+
+#ruta{
+    background:linear-gradient(180deg,#F4F7FC,#fff);
+}
+
+.ruta-introduccion{
+    max-width:850px;
+    margin:0 auto 45px;
+}
+
+.ruta-tarjetas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    max-width:1000px;
+    margin:45px auto;
+}
+
+.ruta-tarjeta{
+    background:linear-gradient(145deg,#123B8C,#4169E1);
+    padding:35px 30px;
+    border-radius:35px 12px;
+    box-shadow:0 12px 30px rgba(18,59,140,.2);
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.ruta-tarjeta:hover{
+    transform:translateY(-7px);
+    box-shadow:0 18px 35px rgba(18,59,140,.28);
+}
+
+.ruta-tarjeta:after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-80px;
+    bottom:-80px;
+}
+
+.ruta-tarjeta h3{
+    color:#fff;
+    font-size:29px;
+    margin-top:0;
+    margin-bottom:18px;
+    position:relative;
+    z-index:2;
+}
+
+.ruta-tarjeta p,
+.ruta-tarjeta li{
+    color:#fff;
+    font-size:17px;
+    line-height:1.6;
+    position:relative;
+    z-index:2;
+}
+
+.ruta-tarjeta ul{
+    padding-left:20px;
+    line-height:1.8;
+    position:relative;
+    z-index:2;
+}
+
+/* HIDRATACIÓN */
+
+.hidratacion{
+    max-width:1100px;
+    margin:65px auto;
+}
+
+.hidratacion h3{
+    color:#123B8C;
+    font-size:31px;
+    margin-bottom:30px;
+}
+
+.puntos-hidratacion{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.punto-hidratacion{
+    background:#fff;
+    color:#123B8C;
+    padding:30px 25px;
+    border-radius:25px;
+    box-shadow:0 10px 25px rgba(18,59,140,.1);
+    border-bottom:5px solid #4169E1;
+    transition:.3s;
+}
+
+.punto-hidratacion:hover{
+    transform:translateY(-7px);
+    box-shadow:0 16px 30px rgba(18,59,140,.15);
+}
+
+.punto-hidratacion h4{
+    color:#123B8C;
+    font-size:24px;
+    margin-top:0;
+    margin-bottom:15px;
+}
+
+.punto-hidratacion p{
+    color:#444;
+    font-size:16px;
+    line-height:1.6;
+    margin:8px auto;
+}
+
+/* MAPA */
+
+.boton-mapa{
+    background:#123B8C;
+    color:#fff;
+    padding:16px 30px;
+    border:none;
+    border-radius:50px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+    box-shadow:0 8px 20px rgba(18,59,140,.2);
+    transition:.3s;
+}
+
+.boton-mapa:hover{
+    background:#4169E1;
+    transform:translateY(-4px);
+    box-shadow:0 12px 25px rgba(18,59,140,.25);
+}
+
+.modal-mapa{
+    display:none;
+    position:fixed;
+    z-index:2000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,20,55,.8);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.contenido-mapa{
+    position:relative;
+    background:#fff;
+    padding:15px;
+    border-radius:25px;
+    max-width:1000px;
+    max-height:90vh;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    animation:aparecerMapa .3s ease;
+}
+
+.contenido-mapa img{
+    display:block;
+    max-width:100%;
+    max-height:82vh;
+    height:auto;
+    border-radius:15px;
+}
+
+.cerrar-mapa{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#123B8C;
+    color:#fff;
+    font-size:25px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    transition:.3s;
+}
+
+.cerrar-mapa:hover{
+    background:#4169E1;
+    transform:rotate(90deg);
+}
+
+@keyframes aparecerMapa{
+    from{
+        opacity:0;
+        transform:scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* PATROCINADORES */
+
+/* ===== PATROCINADORES ===== */
+
+#patrocinadores{
+    background:#fff;
+    min-height:350px;
+}
+
+#patrocinadores > p{
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.patrocinadores-contenedor{
+    max-width:1200px;
+    margin:55px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:55px 45px;
+    align-items:start;
+}
+
+.patrocinador{
+    width:100%;
+    text-align:center;
+    padding:0 10px;
+}
+
+.logo-patrocinador{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:150px;
+    text-decoration:none;
+}
+
+.logo-patrocinador img{
+    display:block;
+    max-width:260px;
+    max-height:140px;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    transition:transform .3s ease;
+}
+
+.logo-patrocinador:hover img{
+    transform:scale(1.06);
+}
+
+.patrocinador h3{
+    color:#123B8C;
+    font-size:20px;
+    margin:18px 0 12px;
+    line-height:1.3;
+}
+
+.patrocinador-dato{
+    color:#444;
+    font-size:14px;
+    line-height:1.6;
+    margin:7px auto;
+    max-width:340px;
+}
+
+.patrocinador-dato a{
+    color:#123B8C;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.patrocinador-dato a:hover{
+    text-decoration:underline;
+}
+
+
+/* ===== PATROCINADORES EN CELULAR ===== */
+
+@media(max-width:900px){
+
+    .patrocinadores-contenedor{
+        grid-template-columns:repeat(2, 1fr);
+        gap:50px 25px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .patrocinadores-contenedor{
+        grid-template-columns:1fr;
+        gap:55px;
+    }
+
+    .logo-patrocinador{
+        height:145px;
+    }
+
+    .logo-patrocinador img{
+        max-width:240px;
+    }
+
+    .patrocinador h3{
+        font-size:19px;
+    }
+
+}
+
+/* CONTACTO */
+
+#contacto{
+    background:linear-gradient(135deg,#123B8C,#0E3278);
+    color:#fff;
+    padding-bottom:70px;
+}
+
+#contacto h2,
+#contacto p{
+    color:#fff;
+}
+
+#contacto h2:after{
+    background:#fff;
+}
+
+.contacto-enlace{
+    color:#fff;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 18px;
+    border-radius:50px;
+    transition:.3s;
+    font-weight:bold;
+}
+
+.contacto-enlace:hover{
+    background:rgba(255,255,255,.15);
+    transform:translateY(-3px);
+}
+
+.redes-sociales{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-top:30px;
+}
+
+.red-social{
+    background:#fff;
+    color:#123B8C;
+    text-decoration:none;
+    padding:13px 20px;
+    border-radius:50px;
+    font-weight:bold;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.red-social:hover{
+    background:#4169E1;
+    color:#fff;
+    transform:translateY(-5px);
+}
+
+/* CELULAR */
+
+@media(max-width:700px){
+
+    nav{
+        padding:12px 8px;
+        gap:3px;
+    }
+
+    nav a{
+        font-size:13px;
+        margin:0 2px;
+        padding:7px 9px;
+    }
+
+    header{
+        min-height:600px;
+    }
+
+    .texto-portada{
+        padding:25px;
+    }
+
+    .texto-portada p{
+        font-size:18px;
+    }
+
+    section{
+        padding:70px 18px;
+    }
+
+    .info-tarjeta,
+    .ruta-tarjeta{
+        border-radius:25px 10px;
+    }
+
+    form{
+        padding:28px 20px;
+        border-radius:25px 10px;
+    }
+
+    .horarios,
+    .kit,
+    .rifas{
+        padding:28px 20px;
+        border-radius:25px;
+    }
+
+    .premiacion{
+        border-radius:28px 10px;
+    }
+
+    .premio{
+        width:100%;
+        max-width:260px;
+    }
+
+    .seguridad-tarjeta{
+        padding:25px 18px;
+    }
+
+    .contenido-mapa{
+        padding:8px;
+        border-radius:18px;
+    }
+
+    .cerrar-mapa{
+        top:-10px;
+        right:-8px;
+    }
+
+    .redes-sociales{
+        flex-direction:column;
+    }
+
+    .red-social{
+        width:220px;
+        justify-content:center;
+    }
+
+    .patrocinadores-contenedor{
+        gap:45px;
+    }
+
+    .patrocinador{
+        max-width:500px;
+    }
+}
+
+/* ===== EFECTO ACUARELA DEL CURSOR ===== */
+
+.acuarela{
+    position:fixed;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9999;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            rgba(65,105,225,.35),
+            rgba(18,59,140,.18) 45%,
+            rgba(65,105,225,0) 75%
+        );
+
+    filter:blur(4px);
+
+    transform:translate(-50%,-50%) scale(.7);
+
+    animation:
+        desaparecerAcuarela .8s ease-out forwards;
+}
+
+@keyframes desaparecerAcuarela{
+
+    0%{
+        opacity:.7;
+        transform:
+            translate(-50%,-50%)
+            scale(.7)
+            rotate(0deg);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translate(-50%,-50%)
+            scale(2.2)
+            rotate(25deg);
+    }
+}
+
+</style>
+</head>
+
+<body>
+<!-- ===== PANTALLA DE CARGA ===== -->
+
+<div id="pantallaCarga">
+
+    <div class="cargando-contenido">
+
+        <img
+            src="snoopy-corriendo.gif"
+            alt="Snoopy corriendo"
+        >
+
+        <p>Cargando...</p>
+
+    </div>
+
+</div>
+<nav>
+
+    <a href="#inicio">
+        Inicio
+    </a>
+
+    <a href="#informacion">
+        Información
+    </a>
+
+    <a href="#inscripcion">
+        Inscripción
+    </a>
+
+    <a href="#comprobante">
+        Comprobante
+    </a>
+
+    <a href="#ruta">
+        Ruta
+    </a>
+
+    <a href="#patrocinadores">
+        Patrocinadores
+    </a>
+
+    <a href="#contacto">
+        Contacto
+    </a>
+
+</nav>
+
+<header id="inicio">
+
+    <div class="texto-portada">
+
+        <h1>
+            Carrera por la Salud y La Paz
+        </h1>
+
+        <p>
+            Generación XI Medicina
+        </p>
+
+        <p>
+            San Cristóbal de Las Casas, Chiapas
+        </p>
+
+        <a
+            class="boton"
+            href="#inscripcion"
+        >
+            ¡INSCRÍBETE!
+        </a>
+
+    </div>
+
+    <div class="onda"></div>
+
+</header>
+
+<section id="informacion">
+
+    <h2>
+        Sobre la carrera
+    </h2>
+
+    <div class="informacion-intro">
+
+        <p>
+            Te invitamos a formar parte de la
+            <strong>Carrera por la Salud y La Paz</strong>,
+            organizada por la Generación XI de Medicina.
+        </p>
+
+        <p>
+            Prepárate para disfrutar de una experiencia
+            deportiva, familiar y llena de energía en
+            San Cristóbal de Las Casas, Chiapas.
+        </p>
+
+    </div>
+
+    <div class="info-tarjetas">
+
+        <div class="info-tarjeta">
+
+            <h3>
+                📅 Fecha
+            </h3>
+
+            <p>
+                <strong>
+                    8 de noviembre
+                </strong>
+            </p>
+
+            <p>
+                Aparta esta fecha porque tenemos una cita.
+            </p>
+
+        </div>
+
+        <div class="info-tarjeta">
+
+            <h3>
+                🏃 Distancias
+            </h3>
+
+            <p>
+                Elige entre:
+            </p>
+
+            <p>
+                <strong>5 km</strong>
+                &nbsp; o &nbsp;
+                <strong>10 km</strong>
+            </p>
+
+        </div>
+
+        <div class="info-tarjeta">
+
+            <h3>
+                🏅 Categoría
+            </h3>
+
+            <p>
+                Categoría
+                <strong>Libre</strong>
+            </p>
+
+            <p>
+                Participación para
+                <strong>H</strong>
+                y
+                <strong>M</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div style="
+        max-width:700px;
+        margin:35px auto;
+        background:white;
+        padding:25px 30px;
+        border-radius:25px;
+        box-shadow:0 10px 25px rgba(18,59,140,.12);
+        border:2px solid #DDE7FF;
+    ">
+
+        <h3 style="
+            color:#123B8C;
+            font-size:28px;
+            margin:0 0 10px 0;
+        ">
+            Costo de inscripción
+        </h3>
+
+        <p style="
+            color:#4169E1;
+            font-size:32px;
+            font-weight:bold;
+            margin:0;
+        ">
+            $300 MXN
+        </p>
+
+    </div>
+
+    <div class="horarios">
+
+        <h3>
+            ⏰ Horario del evento
+        </h3>
+
+        <div class="horario">
+
+            <div class="hora">
+                06:30 AM
+            </div>
+
+            <div class="actividad">
+                🔥 Calentamiento masivo
+            </div>
+
+        </div>
+
+        <div class="horario">
+
+            <div class="hora">
+                07:00 AM
+            </div>
+
+            <div class="actividad">
+                🏃 Inicio de la carrera
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="kit">
+
+        <h3>
+            🎽 ¿Qué incluye tu inscripción?
+        </h3>
+
+        <p>
+            Todos los participantes recibirán
+            un kit para disfrutar al máximo
+            de la carrera.
+        </p>
+
+        <div class="kit-elementos">
+
+            <div class="kit-item">
+                👕 Playera
+            </div>
+
+            <div class="kit-item">
+                🏅 Medalla
+            </div>
+
+            <div class="kit-item">
+                💧 Hidratación
+            </div>
+
+            <div class="kit-item">
+                🥪 Refrigerio
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="premiacion">
+
+        <h3>
+            🏆 Premiación
+        </h3>
+
+        <p>
+            Se reconocerá a los
+            <strong>3 primeros lugares</strong>
+            con premios económicos.
+        </p>
+
+        <div class="premios">
+
+            <div class="premio">
+
+                <h4>
+                    🥇 1.er lugar
+                </h4>
+
+                <p>
+                    $1,500
+                </p>
+
+            </div>
+
+            <div class="premio">
+
+                <h4>
+                    🥈 2.º lugar
+                </h4>
+
+                <p>
+                    $1,000
+                </p>
+
+            </div>
+
+            <div class="premio">
+
+                <h4>
+                    🥉 3.er lugar
+                </h4>
+
+                <p>
+                    $500
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="rifas">
+
+        <h3>
+            🎟️ ¡También habrá rifas!
+        </h3>
+
+        <p>
+            Todos los folios de inscripción
+            participarán en rifas con
+            <strong>
+                premios otorgados por nuestros patrocinadores.
+            </strong>
+        </p>
+
+        <p>
+            ¡Tu folio puede ser uno de los ganadores!
+        </p>
+
+    </div>
+
+    <div class="seguridad">
+
+        <h3>
+            🛡️ Evento avalado y respaldado por
+        </h3>
+
+        <div class="seguridad-intro">
+
+            <p>
+                Durante el evento contaremos con el respaldo
+                de instituciones encargadas de la seguridad,
+                vialidad y atención de los participantes.
+            </p>
+
+        </div>
+
+        <div class="seguridad-tarjetas">
+
+            <div class="seguridad-tarjeta">
+
+                <div class="seguridad-icono">
+                    🛡️
+                </div>
+
+                <h4>
+                    Protección Civil
+                </h4>
+
+                <p>
+                    Plan de seguridad y emergencias
+                    durante el evento.
+                </p>
+
+            </div>
+
+            <div class="seguridad-tarjeta">
+
+                <div class="seguridad-icono">
+                    🚗
+                </div>
+
+                <h4>
+                    Tránsito Municipal
+                </h4>
+
+                <p>
+                    Cierre de calles y acompañamiento
+                    vial durante el recorrido.
+                </p>
+
+            </div>
+
+            <div class="seguridad-tarjeta">
+
+                <div class="seguridad-icono">
+                    ➕
+                </div>
+
+                <h4>
+                    Cruz Roja Mexicana
+                </h4>
+
+                <p>
+                    Atención médica durante todo el evento.
+                </p>
+
+            </div>
+
+            <div class="seguridad-tarjeta">
+
+                <div class="seguridad-icono">
+                    🏥
+                </div>
+
+                <h4>
+                    Hospital de las Culturas
+                </h4>
+
+                <p>
+                    Respaldo y atención hospitalaria
+                    para el evento.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="inscripcion">
+
+    <h2>
+        Inscripciones
+    </h2>
+
+    <p>
+        ¡Forma parte de esta experiencia!
+    </p>
+
+    <form id="formularioInscripcion">
+
+        <label for="nombre">
+            Nombre completo
+        </label>
+
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre completo"
+            required
+        >
+
+        <label for="edad">
+            Edad
+        </label>
+
+        <input
+            type="number"
+            id="edad"
+            name="edad"
+            placeholder="Escribe tu edad"
+            min="1"
+            max="120"
+            required
+        >
+
+        <label for="telefono">
+            Teléfono
+        </label>
+
+        <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            placeholder="Escribe tu número de teléfono"
+            required
+        >
+
+        <label for="correo">
+            Correo electrónico
+        </label>
+
+        <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="ejemplo@correo.com"
+            required
+        >
+
+        <label>
+            Distancia
+        </label>
+
+        <div class="distancias">
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="distancia"
+                    value="5 km"
+                    required
+                >
+
+                5 km
+
+            </label>
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="distancia"
+                    value="10 km"
+                >
+
+                10 km
+
+            </label>
+
+        </div>
+
+        <label for="como_se_entero">
+            ¿De dónde te enteraste de la carrera?
+        </label>
+
+        <select
+            id="como_se_entero"
+            name="como_se_entero"
+            required
+        >
+
+            <option value="">
+                Selecciona una opción
+            </option>
+
+            <option value="internet">
+                Por internet
+            </option>
+
+            <option value="centro">
+                CENTRO
+            </option>
+
+            <option value="cetis">
+                CETIS
+            </option>
+
+            <option value="cobach">
+                COBACH
+            </option>
+
+            <option value="prepa">
+                Prepa
+            </option>
+
+            <option value="unich">
+                UNICH
+            </option>
+
+            <option value="sedem">
+                SEDEM
+            </option>
+
+            <option value="un amigo">
+                Un amigo
+            </option>
+
+        </select>
+
+        <label for="enfermedad">
+            ¿Padeces alguna enfermedad que imposibilite
+            tu llegada o participación en la carrera?
+        </label>
+
+        <select
+            id="enfermedad"
+            name="enfermedad"
+            required
+        >
+
+            <option value="">
+                Selecciona una opción
+            </option>
+
+            <option value="no">
+                No
+            </option>
+
+            <option value="si">
+                Sí
+            </option>
+
+        </select>
+
+        <label for="cual_enfermedad">
+            Si respondiste "Sí", ¿cuál?
+        </label>
+
+        <textarea
+            id="cual_enfermedad"
+            name="cual_enfermedad"
+            placeholder="Escribe cuál"
+        ></textarea>
+
+        <div class="checkbox">
+
+            <input
+                type="checkbox"
+                id="carta_responsiva"
+                name="carta_responsiva"
+                required
+            >
+
+            <label for="carta_responsiva">
+
+                En caso de ser menor de edad deberá llevar carta responsiva firmada por un tutor.
+                Estoy de acuerdo.
+
+            </label>
+
+        </div>
+
+        <button
+            type="submit"
+            class="boton"
+        >
+
+            ENVIAR INSCRIPCIÓN
+
+        </button>
+
+    </form>
+
+    <div
+        id="mensajeRegistro"
+        aria-live="polite"
+    ></div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ================= COMPROBANTE DE PAGO =================== -->
+<!-- ========================================================= -->
+
+<section id="comprobante">
+
+    <h2>
+        Comprobante de pago
+    </h2>
+
+    <div class="comprobante-intro">
+
+        <p>
+            Después de realizar tu pago,
+            sube aquí tu comprobante para que
+            podamos validar tu inscripción.
+        </p>
+
+        <p>
+            Puedes subir una imagen JPG, PNG o un archivo PDF.
+            El tamaño máximo es de 5 MB.
+        </p>
+
+    </div>
+
+    <form
+        id="formularioComprobante"
+    >
+
+        <input
+            type="hidden"
+            name="tipo_registro"
+            value="comprobante"
+        >
+
+        <label for="folioComprobante">
+            Número de corredor
+        </label>
+
+        <input
+            type="text"
+            id="folioComprobante"
+            name="folio"
+            placeholder="Ej. CSP-0001"
+            required
+        >
+
+        <label for="correoComprobante">
+            Correo electrónico
+        </label>
+
+        <input
+            type="email"
+            id="correoComprobante"
+            name="correo_comprobante"
+            placeholder="El mismo correo que utilizaste al registrarte"
+            required
+        >
+
+        <label for="archivoComprobante">
+            Comprobante de pago
+        </label>
+
+        <input
+            type="file"
+            id="archivoComprobante"
+            accept=".jpg,.jpeg,.png,.pdf"
+            required
+        >
+
+        <input
+            type="hidden"
+            id="archivoData"
+            name="archivo_data"
+        >
+
+        <input
+            type="hidden"
+            id="archivoNombre"
+            name="archivo_nombre"
+        >
+
+        <input
+            type="hidden"
+            id="archivoTipo"
+            name="archivo_tipo"
+        >
+
+        <button
+            type="submit"
+            class="boton"
+        >
+            ENVIAR COMPROBANTE
+        </button>
+
+    </form>
+
+    <div
+        id="mensajeComprobante"
+        aria-live="polite"
+    ></div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ======================= RUTA ============================ -->
+<!-- ========================================================= -->
+
+<section id="ruta">
+
+    <h2>
+        Ruta de la carrera
+    </h2>
+
+    <div class="ruta-introduccion">
+
+        <p>
+            Conoce el recorrido oficial de la
+            Carrera Por La Salud y La Paz.
+        </p>
+
+        <p>
+            El circuito recorre algunas de las
+            principales calles del Centro Histórico
+            de San Cristóbal de Las Casas.
+        </p>
+
+    </div>
+
+    <div class="ruta-tarjetas">
+
+        <div class="ruta-tarjeta">
+
+            <h3>
+                🏃 Carrera 5 km
+            </h3>
+
+            <p>
+                El recorrido de 5 km consiste en
+                completar una vuelta al circuito.
+            </p>
+
+            <ul>
+
+                <li>
+                    Salida en Calle Guadalupe Victoria
+                </li>
+
+                <li>
+                    Prolongación Guadalupe Victoria
+                </li>
+
+                <li>
+                    Diagonal Ramón Larrainzar
+                </li>
+
+                <li>
+                    Calle Diego de Mazariegos
+                </li>
+
+                <li>
+                    Calle Francisco Ignacio Madero
+                </li>
+
+                <li>
+                    Calle Bernal Díaz del Castillo
+                </li>
+
+                <li>
+                    Regreso a Calle Guadalupe Victoria
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="ruta-tarjeta">
+
+            <h3>
+                🏃 Carrera 10 km
+            </h3>
+
+            <p>
+                El recorrido de 10 km consiste en
+                realizar <strong>dos vueltas completas</strong>
+                al circuito de 5 km.
+            </p>
+
+            <p>
+                Al finalizar la primera vuelta,
+                los corredores continúan nuevamente
+                por el mismo circuito hasta completar
+                los 10 km.
+            </p>
+
+            <p>
+                <strong>
+                    5 km + 5 km = 10 km
+                </strong>
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="hidratacion">
+
+        <h3>
+            💧 Puntos de hidratación
+        </h3>
+
+        <div class="puntos-hidratacion">
+
+            <div class="punto-hidratacion">
+
+                <h4>
+                    💧 H1 — Salida / Meta
+                </h4>
+
+                <p>
+                    Punto de salida, concentración
+                    de participantes y meta.
+                </p>
+
+            </div>
+
+            <div class="punto-hidratacion">
+
+                <h4>
+                    💧 H2 — Diego de Mazariegos
+                </h4>
+
+                <p>
+                    Calle Diego de Mazariegos, frente a METLIFE
+                </p>
+
+                <p>
+                    Primer punto de hidratación
+                    durante el recorrido.
+                </p>
+
+            </div>
+
+            <div class="punto-hidratacion">
+
+                <h4>
+                    💧 H3 — Francisco I. Madero
+                </h4>
+
+                <p>
+                    Francisco I. Madero /
+                    Bernal Díaz del Castillo.
+                </p>
+
+                <p>
+                    Segundo punto de hidratación
+                    durante el recorrido.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        <p>
+            Consulta el croquis completo del recorrido.
+        </p>
+
+        <button
+            class="boton-mapa"
+            onclick="abrirMapa()"
+        >
+
+            🗺️ VER CROQUIS DEL RECORRIDO
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ===================== VENTANA MAPA ====================== -->
+<!-- ========================================================= -->
+
+<div
+    id="ventanaMapa"
+    class="modal-mapa"
+    onclick="cerrarMapa(event)"
+>
+
+    <div class="contenido-mapa">
+
+        <button
+            class="cerrar-mapa"
+            onclick="cerrarMapa()"
+        >
+
+            ×
+
+        </button>
+
+        <img
+            src="Croquis de recorrido.jpg"
+            alt="Croquis del recorrido de la Carrera por la Salud y la Paz"
+        >
+
+    </div>
+
+</div>
+
+<!-- ========================================================= -->
+<!-- =================== PATROCINADORES ===================== -->
+<!-- ========================================================= -->
+
+
+     <section id="patrocinadores">
+
+    <h2>
+        Nuestros patrocinadores
+    </h2>
+
+    <p>
+        Gracias a todas las empresas y personas que
+        hacen posible este evento.
+    </p>
+
+
+    <div class="patrocinadores-contenedor">
+
+
+        <!-- ===== CHEVROLET ===== -->
+
+        <div class="patrocinador">
+
+            <a
+                href="https://www.facebook.com/chevroletsancristobalmx"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="logo-patrocinador"
+            >
+
+                <img
+                    src="Chevrolet.jpg"
+                    alt="Chevrolet Farrera San Cristóbal"
+                >
+
+            </a>
+
+            <h3>
+                Chevrolet Farrera San Cristóbal
+            </h3>
+
+            <p class="patrocinador-dato">
+                📍 Dirección: Carr. Internacional KM 1170,
+                San Antonio, Frente al INE
+            </p>
+
+            <p class="patrocinador-dato">
+
+                📞 Número telefónico:
+
+                <a href="tel:9671639116">
+                    967 163 9116
+                </a>
+
+            </p>
+
+        </div>
+
+
+        <!-- ===== METLIFE ===== -->
+
+        <div class="patrocinador">
+
+            <a
+                href="https://www.facebook.com/profile.php?id=61594394131690"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="logo-patrocinador"
+            >
+
+                <img
+                    src="medlife.jpg"
+                    alt="Insur/Metlife San Cristóbal"
+                >
+
+            </a>
+
+            <h3>
+                Insur/Metlife San Cristóbal
+            </h3>
+
+            <p class="patrocinador-dato">
+                📍 Dirección: Diego de Mazariegos no. 66,
+                local 1, Barrio de la Merced
+            </p>
+
+            <p class="patrocinador-dato">
+
+                📞 Número telefónico:
+
+                <a href="tel:9671911522">
+                    967-191-15-22
+                </a>
+
+            </p>
+
+           
+
+        </div>
+
+
+        <!-- ===== HANAYA SUSHI ===== -->
+
+        <div class="patrocinador">
+
+            <a
+                href="https://www.facebook.com/share/19n9mhcGqj/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="logo-patrocinador"
+            >
+
+                <img
+                    src="hanaya-sushi.jpg"
+                    alt="Hanaya Sushi"
+                >
+
+            </a>
+
+            <h3>
+                Hanaya Sushi
+            </h3>
+
+            <p class="patrocinador-dato">
+
+                📍 Dirección: Calle Diego de Mazariegos #77,
+                San Cristóbal de Las Casas, México, 29240
+
+            </p>
+
+            <p class="patrocinador-dato">
+
+                📞 Número telefónico:
+
+                <a href="tel:9671622863">
+                    967-162-2863
+                </a>
+
+            </p>
+
+        </div>
+<!-- ===== CHURRERÍA PORFIRIO ===== -->
+
+<div class="patrocinador">
+
+    <a
+        href="https://www.facebook.com/share/1HcvhzPXYd/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="logo-patrocinador"
+    >
+
+        <img
+            src="churreria-porfirio.jpg"
+            alt="Churrería Porfirio"
+        >
+
+    </a>
+
+    <h3>
+        Churrería Porfirio
+    </h3>
+
+    <p class="patrocinador-dato">
+
+        📍 Dirección: Real de Guadalupe 37,
+        Barrio de Guadalupe,
+        San Cristóbal de Las Casas,
+        México, 29230
+
+    </p>
+
+    <p class="patrocinador-dato">
+
+        📞 Número telefónico:
+
+        <a href="tel:9671680662">
+            967-168-0662
+        </a>
+
+    </p>
+
+</div>
+
+    </div>
+
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ======================= CONTACTO ======================== -->
+<!-- ========================================================= -->
+
+<section id="contacto">
+
+    <h2>
+        Contacto
+    </h2>
+
+    <p>
+        ¿Tienes alguna pregunta?
+    </p>
+
+    <p>
+
+        <a
+            class="contacto-enlace"
+            href="https://chat.whatsapp.com/CMmoaYNwElPEIVRgTDfxG8"
+            rel="noopener noreferrer"
+        >
+
+            📱 WhatsApp: carrera por la salud y la paz
+
+        </a>
+
+    </p>
+
+    <p>
+
+        <a
+            class="contacto-enlace"
+            href="mailto:genxi.c.2026@gmail.com"
+        >
+
+            📧 Correo: genxi.c.2026@gmail.com
+
+        </a>
+
+    </p>
+
+    <div class="redes-sociales">
+
+        <a
+            class="red-social"
+            href="https://www.instagram.com/gen_xi.a.c?stkn=MWZmcmszdXN2d2hxdg=="
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            📸 Instagram
+
+        </a>
+
+        <a
+            class="red-social"
+            href="https://www.tiktok.com/@generacin.xi.med?_r=1&_t=ZS-9A6AtGugZN4"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            🎵 TikTok
+
+        </a>
+
+        <a
+            class="red-social"
+            href="https://www.facebook.com/share/18V5S2rSsE/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            ⓕ Facebook
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- ========================================================= -->
+<!-- ======================= SCRIPTS ========================= -->
+<!-- ========================================================= -->
+
+<script>
+
+const URL_REGISTRO =
+"https://script.google.com/macros/s/AKfycbwmrZekfjxkWJSO-ekWfKrUyFOmtFnZFTx5kQnrfftfYUWyPo7ohpoEpmPLxDdG4Roqmg/exec";
+
+
+const formularioInscripcion =
+document.getElementById("formularioInscripcion");
+
+
+const mensajeRegistro =
+document.getElementById("mensajeRegistro");
+
+
+/* =========================================================
+   IFRAME OCULTO PARA RECIBIR LA RESPUESTA
+   ========================================================= */
+
+const iframeRegistro =
+document.createElement("iframe");
+
+
+iframeRegistro.name =
+"respuestaRegistro";
+
+
+iframeRegistro.style.display =
+"none";
+
+
+iframeRegistro.setAttribute(
+    "aria-hidden",
+    "true"
+);
+
+
+document.body.appendChild(
+    iframeRegistro
+);
+
+
+/* =========================================================
+   CONFIGURAR FORMULARIO DE INSCRIPCIÓN
+   ========================================================= */
+
+formularioInscripcion.action =
+URL_REGISTRO;
+
+
+formularioInscripcion.method =
+"POST";
+
+
+formularioInscripcion.target =
+"respuestaRegistro";
+
+
+/* =========================================================
+   ENVÍO DE INSCRIPCIÓN
+   ========================================================= */
+
+formularioInscripcion.addEventListener(
+    "submit",
+    function(){
+
+        mensajeRegistro.className = "";
+
+        mensajeRegistro.style.display =
+        "block";
+
+        mensajeRegistro.textContent =
+        "⏳ Enviando tu registro...";
+
+
+        const boton =
+        formularioInscripcion.querySelector(
+            'button[type="submit"]'
+        );
+
+
+        boton.disabled =
+        true;
+
+
+        boton.textContent =
+        "ENVIANDO...";
+
+    }
+);
+
+
+/* =========================================================
+   RECIBIR RESPUESTA DE INSCRIPCIÓN
+   ========================================================= */
+
+window.addEventListener(
+    "message",
+    function(event){
+
+        const datos =
+        event.data;
+
+
+        if(
+            !datos ||
+            datos.type !==
+            "REGISTRO_COMPLETADO"
+        ){
+
+            return;
+
+        }
+
+
+        const boton =
+        formularioInscripcion.querySelector(
+            'button[type="submit"]'
+        );
+
+
+        /* ===== REGISTRO CORRECTO ===== */
+
+        if(
+            datos.ok === true
+        ){
+
+            mensajeRegistro.className =
+            "exito";
+
+
+            mensajeRegistro.innerHTML =
+            "✅ <strong>¡REGISTRO COMPLETADO!</strong><br><br>" +
+            "Tu número de corredor es:<br>" +
+            "<strong style=\"font-size:28px;\">" +
+            datos.folio +
+            "</strong><br><br>" +
+            "Guarda este número porque lo necesitarás posteriormente. Revisa tu correo de SPAM.";
+
+
+            /* ===== GUARDAR DATOS PARA EL COMPROBANTE ===== */
+
+            localStorage.setItem(
+                "carrera_folio",
+                datos.folio
+            );
+
+
+            localStorage.setItem(
+                "carrera_correo",
+                document.getElementById(
+                    "correo"
+                ).value
+            );
+
+
+            formularioInscripcion.reset();
+
+
+            boton.disabled =
+            false;
+
+
+            boton.textContent =
+            "ENVIAR INSCRIPCIÓN";
+
+        }
+
+
+        /* ===== ERROR ===== */
+
+        else{
+
+            mensajeRegistro.className =
+            "error";
+
+
+            mensajeRegistro.textContent =
+            "❌ Ocurrió un error al guardar tu registro. Inténtalo nuevamente.";
+
+
+            boton.disabled =
+            false;
+
+
+            boton.textContent =
+            "ENVIAR INSCRIPCIÓN";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FUNCIONES DEL MAPA
+   ========================================================= */
+
+function abrirMapa(){
+
+    document.getElementById(
+        "ventanaMapa"
+    ).style.display =
+    "flex";
+
+}
+
+
+function cerrarMapa(event){
+
+    if(
+        !event ||
+        event.target.id ===
+        "ventanaMapa"
+    ){
+
+        document.getElementById(
+            "ventanaMapa"
+        ).style.display =
+        "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   COMPROBANTE DE PAGO
+   ========================================================= */
+
+const formularioComprobante =
+document.getElementById(
+    "formularioComprobante"
+);
+
+
+const archivoComprobante =
+document.getElementById(
+    "archivoComprobante"
+);
+
+
+const archivoData =
+document.getElementById(
+    "archivoData"
+);
+
+
+const archivoNombre =
+document.getElementById(
+    "archivoNombre"
+);
+
+
+const archivoTipo =
+document.getElementById(
+    "archivoTipo"
+);
+
+
+const mensajeComprobante =
+document.getElementById(
+    "mensajeComprobante"
+);
+
+
+/* =========================================================
+   CONFIGURAR FORMULARIO DEL COMPROBANTE
+   ========================================================= */
+
+formularioComprobante.action =
+URL_REGISTRO;
+
+
+formularioComprobante.method =
+"POST";
+
+
+formularioComprobante.target =
+"respuestaRegistro";
+
+
+/* =========================================================
+   CARGAR FOLIO Y CORREO GUARDADOS
+   ========================================================= */
+
+const folioGuardado =
+localStorage.getItem(
+    "carrera_folio"
+);
+
+
+const correoGuardado =
+localStorage.getItem(
+    "carrera_correo"
+);
+
+
+if(
+    folioGuardado
+){
+
+    document.getElementById(
+        "folioComprobante"
+    ).value =
+    folioGuardado;
+
+}
+
+
+if(
+    correoGuardado
+){
+
+    document.getElementById(
+        "correoComprobante"
+    ).value =
+    correoGuardado;
+
+}
+
+
+/* =========================================================
+   ENVIAR COMPROBANTE
+   ========================================================= */
+
+formularioComprobante.addEventListener(
+    "submit",
+    function(event){
+
+        event.preventDefault();
+
+
+        const archivo =
+        archivoComprobante.files[0];
+
+
+        if(
+            !archivo
+        ){
+
+            return;
+
+        }
+
+
+        /* ===== LÍMITE DE 5 MB ===== */
+
+        const limite =
+        5 * 1024 * 1024;
+
+
+        if(
+            archivo.size >
+            limite
+        ){
+
+            mensajeComprobante.style.display =
+            "block";
+
+
+            mensajeComprobante.style.background =
+            "#FDEDED";
+
+
+            mensajeComprobante.style.color =
+            "#A31F1F";
+
+
+            mensajeComprobante.style.border =
+            "2px solid #E7A0A0";
+
+
+            mensajeComprobante.textContent =
+            "❌ El archivo supera el límite de 5 MB.";
+
+
+            return;
+
+        }
+
+
+        /* ===== TIPOS PERMITIDOS ===== */
+
+        const tiposPermitidos = [
+
+            "image/jpeg",
+
+            "image/png",
+
+            "application/pdf"
+
+        ];
+
+
+        if(
+            !tiposPermitidos.includes(
+                archivo.type
+            )
+        ){
+
+            mensajeComprobante.style.display =
+            "block";
+
+
+            mensajeComprobante.style.background =
+            "#FDEDED";
+
+
+            mensajeComprobante.style.color =
+            "#A31F1F";
+
+
+            mensajeComprobante.style.border =
+            "2px solid #E7A0A0";
+
+
+            mensajeComprobante.textContent =
+            "❌ Solo puedes subir JPG, PNG o PDF.";
+
+
+            return;
+
+        }
+
+
+        /* ===== MENSAJE DE ESPERA ===== */
+
+        mensajeComprobante.style.display =
+        "block";
+
+
+        mensajeComprobante.style.background =
+        "#F4F7FC";
+
+
+        mensajeComprobante.style.color =
+        "#123B8C";
+
+
+        mensajeComprobante.style.border =
+        "2px solid #DDE7FF";
+
+
+        mensajeComprobante.textContent =
+        "⏳ Subiendo comprobante...";
+
+
+        const boton =
+        formularioComprobante.querySelector(
+            'button[type="submit"]'
+        );
+
+
+        boton.disabled =
+        true;
+
+
+        boton.textContent =
+        "SUBIENDO...";
+
+
+        /* =================================================
+           LEER ARCHIVO
+           ================================================= */
+
+        const lector =
+        new FileReader();
+
+
+        lector.onload =
+        function(){
+
+            const resultado =
+            lector.result;
+
+
+            archivoData.value =
+            resultado;
+
+
+            archivoNombre.value =
+            archivo.name;
+
+
+            archivoTipo.value =
+            archivo.type;
+
+
+            /*
+             * Enviar el formulario directamente al iframe.
+             */
+
+            formularioComprobante.submit();
+
+        };
+
+
+        lector.onerror =
+        function(){
+
+            mensajeComprobante.style.display =
+            "block";
+
+
+            mensajeComprobante.style.background =
+            "#FDEDED";
+
+
+            mensajeComprobante.style.color =
+            "#A31F1F";
+
+
+            mensajeComprobante.style.border =
+            "2px solid #E7A0A0";
+
+
+            mensajeComprobante.textContent =
+            "❌ No se pudo leer el archivo.";
+
+
+            boton.disabled =
+            false;
+
+
+            boton.textContent =
+            "ENVIAR COMPROBANTE";
+
+        };
+
+
+        lector.readAsDataURL(
+            archivo
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RESPUESTA DEL COMPROBANTE
+   ========================================================= */
+
+window.addEventListener(
+    "message",
+    function(event){
+
+        const datos =
+        event.data;
+
+
+        if(
+            !datos ||
+            datos.type !==
+            "COMPROBANTE_RECIBIDO"
+        ){
+
+            return;
+
+        }
+
+
+        const boton =
+        formularioComprobante.querySelector(
+            'button[type="submit"]'
+        );
+
+
+        if(
+            datos.ok === true
+        ){
+
+            mensajeComprobante.style.display =
+            "block";
+
+
+            mensajeComprobante.style.background =
+            "#EAF7EE";
+
+
+            mensajeComprobante.style.color =
+            "#176B36";
+
+
+            mensajeComprobante.style.border =
+            "2px solid #9BD0AA";
+
+
+            mensajeComprobante.innerHTML =
+            "✅ <strong>¡COMPROBANTE RECIBIDO!</strong><br><br>" +
+            "Tu comprobante fue enviado correctamente.<br>" +
+            "Tu inscripción queda pendiente de validación.";
+
+
+            formularioComprobante.reset();
+
+
+            /* Volver a colocar los datos guardados */
+
+            if(
+                folioGuardado
+            ){
+
+                document.getElementById(
+                    "folioComprobante"
+                ).value =
+                folioGuardado;
+
+            }
+
+
+            if(
+                correoGuardado
+            ){
+
+                document.getElementById(
+                    "correoComprobante"
+                ).value =
+                correoGuardado;
+
+            }
+
+
+            boton.disabled =
+            false;
+
+
+            boton.textContent =
+            "ENVIAR COMPROBANTE";
+
+        }
+
+        else{
+
+            mensajeComprobante.style.display =
+            "block";
+
+
+            mensajeComprobante.style.background =
+            "#FDEDED";
+
+
+            mensajeComprobante.style.color =
+            "#A31F1F";
+
+
+            mensajeComprobante.style.border =
+            "2px solid #E7A0A0";
+
+
+            mensajeComprobante.textContent =
+            "❌ " +
+            (
+                datos.error ||
+                "No se pudo recibir el comprobante."
+            );
+
+
+            boton.disabled =
+            false;
+
+
+            boton.textContent =
+            "ENVIAR COMPROBANTE";
+
+        }
+
+    }
+);
+
+</script>
+
+<script>
+
+/* =========================================================
+   EFECTO ACUARELA DEL CURSOR
+   ========================================================= */
+
+let ultimaMancha = 0;
+
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        const ahora =
+        Date.now();
+
+
+        if(
+            ahora - ultimaMancha < 60
+        ){
+
+            return;
+
+        }
+
+
+        ultimaMancha =
+        ahora;
+
+
+        const mancha =
+        document.createElement(
+            "div"
+        );
+
+
+        mancha.className =
+        "acuarela";
+
+
+        mancha.style.left =
+        event.clientX +
+        "px";
+
+
+        mancha.style.top =
+        event.clientY +
+        "px";
+
+
+        document.body.appendChild(
+            mancha
+        );
+
+
+        setTimeout(
+            function(){
+
+                mancha.remove();
+
+            },
+            800
+        );
+
+    }
+);
+
+</script>
+<script>
+window.addEventListener("load", function(){
+
+    const pantallaCarga =
+        document.getElementById("pantallaCarga");
+
+    setTimeout(function(){
+
+        pantallaCarga.style.opacity = "0";
+
+        setTimeout(function(){
+            pantallaCarga.style.display = "none";
+        }, 400);
+
+    }, 700);
+
+});
+
+setTimeout(function(){
+
+    const pantallaCarga =
+        document.getElementById("pantallaCarga");
+
+    if(pantallaCarga){
+
+        pantallaCarga.style.opacity = "0";
+
+        setTimeout(function(){
+            pantallaCarga.style.display = "none";
+        }, 400);
+
+    }
+
+}, 2000);
+</script>
+</body>
+</html>
