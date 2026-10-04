@@ -922,19 +922,28 @@ form .boton:disabled{
     margin-right:auto;
 }
 
-.patrocinadores-contenedor{
+ .patrocinadores-contenedor{
     max-width:1200px;
     margin:55px auto 0;
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:55px 45px;
-    align-items:start;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:35px;
+    align-items:stretch;
+    padding:0 20px;
 }
 
 .patrocinador{
     width:100%;
+    min-width:0;
     text-align:center;
-    padding:0 10px;
+    padding:28px 20px;
+    background:#fff;
+    border-radius:22px;
+    box-shadow:0 10px 30px rgba(18,59,140,.10);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
 }
 
 .logo-patrocinador{
@@ -948,8 +957,8 @@ form .boton:disabled{
 
 .logo-patrocinador img{
     display:block;
-    max-width:260px;
-    max-height:140px;
+    max-width:220px;
+    max-height:130px;
     width:auto;
     height:auto;
     object-fit:contain;
@@ -991,8 +1000,9 @@ form .boton:disabled{
 @media(max-width:900px){
 
     .patrocinadores-contenedor{
-        grid-template-columns:repeat(2, 1fr);
-        gap:50px 25px;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:25px;
+        padding:0 15px;
     }
 
 }
@@ -1001,7 +1011,8 @@ form .boton:disabled{
 
     .patrocinadores-contenedor{
         grid-template-columns:1fr;
-        gap:55px;
+        gap:25px;
+        padding:0 10px;
     }
 
     .logo-patrocinador{
@@ -2410,7 +2421,7 @@ form .boton:disabled{
     </p>
 
 </div>
-                </div>
+                
 
 
         <!-- ===== GORDITAS JAIMITO ===== -->
